@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import javax.validation.constraints.NotNull;
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
         "name",
@@ -25,7 +27,7 @@ public class Company {
     }
 
     @JsonProperty("name")
-    public void setName(String name) {
+    public void setName(@NotNull String name) {
         this.name = name;
     }
 
@@ -35,7 +37,7 @@ public class Company {
     }
 
     @JsonProperty("catchPhrase")
-    public void setCatchPhrase(String catchPhrase) {
+    public void setCatchPhrase(@NotNull String catchPhrase) {
         this.catchPhrase = catchPhrase;
     }
 
@@ -45,7 +47,7 @@ public class Company {
     }
 
     @JsonProperty("bs")
-    public void setBs(String bs) {
+    public void setBs(@NotNull String bs) {
         this.bs = bs;
     }
 

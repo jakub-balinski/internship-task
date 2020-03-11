@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import javax.validation.constraints.NotNull;
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
         "street",
@@ -31,7 +33,7 @@ public class Address {
     }
 
     @JsonProperty("street")
-    public void setStreet(String street) {
+    public void setStreet(@NotNull String street) {
         this.street = street;
     }
 
@@ -41,7 +43,7 @@ public class Address {
     }
 
     @JsonProperty("suite")
-    public void setSuite(String suite) {
+    public void setSuite(@NotNull String suite) {
         this.suite = suite;
     }
 
@@ -51,7 +53,7 @@ public class Address {
     }
 
     @JsonProperty("city")
-    public void setCity(String city) {
+    public void setCity(@NotNull String city) {
         this.city = city;
     }
 
@@ -61,7 +63,7 @@ public class Address {
     }
 
     @JsonProperty("zipcode")
-    public void setZipcode(String zipcode) {
+    public void setZipcode(@NotNull String zipcode) {
         this.zipcode = zipcode;
     }
 
@@ -71,7 +73,7 @@ public class Address {
     }
 
     @JsonProperty("geo")
-    public void setGeo(Geo geo) {
+    public void setGeo(@NotNull Geo geo) {
         this.geo = geo;
     }
 

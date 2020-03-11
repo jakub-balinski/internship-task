@@ -64,7 +64,7 @@ public class App {
                     System.out.println(
                             String.format("Najbliżej %s znajduje się %s",
                                     user.getUsername(),
-                                    user.findNearestNeighbor(users).get().getUsername() //<-- no check for presence
+                                    user.getNearestNeighbor(users).get().getUsername() //<-- no check for presence
                             )                                                           //because there are at least
                     )                                                                   //two users at this point - each
             );                                                                          //having at least one neighbor

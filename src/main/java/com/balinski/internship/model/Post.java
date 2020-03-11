@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import javax.validation.constraints.NotNull;
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
         "userId",
@@ -48,7 +50,7 @@ public class Post {
     }
 
     @JsonProperty("title")
-    public void setTitle(String title) {
+    public void setTitle(@NotNull String title) {
         this.title = title;
     }
 
@@ -58,7 +60,7 @@ public class Post {
     }
 
     @JsonProperty("body")
-    public void setBody(String body) {
+    public void setBody(@NotNull String body) {
         this.body = body;
     }
 

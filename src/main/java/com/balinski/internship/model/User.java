@@ -55,7 +55,7 @@ public class User {
     }
 
     @JsonProperty("name")
-    public void setName(String name) {
+    public void setName(@NotNull String name) {
         this.name = name;
     }
 
@@ -65,7 +65,7 @@ public class User {
     }
 
     @JsonProperty("username")
-    public void setUsername(String username) {
+    public void setUsername(@NotNull String username) {
         this.username = username;
     }
 
@@ -75,7 +75,7 @@ public class User {
     }
 
     @JsonProperty("email")
-    public void setEmail(String email) {
+    public void setEmail(@NotNull String email) {
         this.email = email;
     }
 
@@ -85,7 +85,7 @@ public class User {
     }
 
     @JsonProperty("address")
-    public void setAddress(Address address) {
+    public void setAddress(@NotNull Address address) {
         this.address = address;
     }
 
@@ -95,7 +95,7 @@ public class User {
     }
 
     @JsonProperty("phone")
-    public void setPhone(String phone) {
+    public void setPhone(@NotNull String phone) {
         this.phone = phone;
     }
 
@@ -105,7 +105,7 @@ public class User {
     }
 
     @JsonProperty("website")
-    public void setWebsite(String website) {
+    public void setWebsite(@NotNull String website) {
         this.website = website;
     }
 
@@ -115,7 +115,7 @@ public class User {
     }
 
     @JsonProperty("company")
-    public void setCompany(Company company) {
+    public void setCompany(@NotNull Company company) {
         this.company = company;
     }
 
@@ -126,14 +126,14 @@ public class User {
                 count();
     }
 
-    public Optional<User> findNearestNeighbor(@NotNull List<User> all) {
+    public Optional<User> getNearestNeighbor(@NotNull List<User> all) {
         final Geo center = this.address.getGeo();
 
         return all.stream().
                 filter(Objects::nonNull).
                 filter(user -> user != this).
-                reduce((u1, u2) -> center.computeDistanceTo(u1.getAddress().getGeo()) <
-                        center.computeDistanceTo(u2.getAddress().getGeo()) ?
+                reduce((u1, u2) -> center.getDistanceTo(u1.getAddress().getGeo()) <
+                        center.getDistanceTo(u2.getAddress().getGeo()) ?
                         u1 : u2);
     }
 
