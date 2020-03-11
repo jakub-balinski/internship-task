@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -117,29 +119,22 @@ public class User {
         this.company = company;
     }
 
-    public long getPostsCount(List<Post> posts) {
+    public long getPostsCount(@NotNull List<Post> posts) {
         return posts.stream().
+                filter(Objects::nonNull).
                 filter(post -> post.getUserId() == this.id).
                 count();
     }
 
-    public Optional<User> findNearestNeighbor(List<User> all) {
-        double distance, minDistance = Double.POSITIVE_INFINITY;
-        Geo thisGeo = this.address.getGeo();
-        Optional<User> nearest = Optional.empty();
+    public Optional<User> findNearestNeighbor(@NotNull List<User> all) {
+        final Geo center = this.address.getGeo();
 
-        for (User user : all) {
-            if (user.equals(this))
-                continue;
-
-            distance = thisGeo.computeDistanceTo(user.getAddress().getGeo());
-            if (distance < minDistance) {
-                minDistance = distance;
-                nearest = Optional.of(user);
-            }
-        }
-
-        return nearest;
+        return all.stream().
+                filter(Objects::nonNull).
+                filter(user -> user != this).
+                reduce((u1, u2) -> center.computeDistanceTo(u1.getAddress().getGeo()) <
+                        center.computeDistanceTo(u1.getAddress().getGeo()) ?
+                        u1 : u2);
     }
 
 }

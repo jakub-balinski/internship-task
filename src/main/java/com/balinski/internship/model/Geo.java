@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import javax.validation.constraints.NotNull;
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
         "lat",
@@ -36,11 +38,11 @@ public class Geo {
         this.lng = lng;
     }
 
-    public double computeDistanceTo(Geo other) {
+    public double computeDistanceTo(@NotNull Geo other) {
         double diffLat = Double.parseDouble(this.getLat()) - Double.parseDouble(other.getLat());
         double diffLng = Double.parseDouble(this.getLng()) - Double.parseDouble(other.getLng());
 
-        return diffLat*diffLat + diffLng*diffLng;
+        return diffLat * diffLat + diffLng * diffLng;
     }
 
 }
