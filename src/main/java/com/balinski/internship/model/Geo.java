@@ -39,10 +39,23 @@ public class Geo {
     }
 
     public double computeDistanceTo(@NotNull Geo other) {
-        double diffLat = Double.parseDouble(this.getLat()) - Double.parseDouble(other.getLat());
-        double diffLng = Double.parseDouble(this.getLng()) - Double.parseDouble(other.getLng());
+        final double EARTH_RADIUS = 6372.8;
 
-        return diffLat * diffLat + diffLng * diffLng;
+        //Haversine formula
+        double lat1 = Double.parseDouble(this.lat);
+        double lat2 = Double.parseDouble(other.getLat());
+        final double lng1 = Double.parseDouble(this.lng);
+        final double lng2 = Double.parseDouble(other.getLng());
+        final double diffLat = Math.toRadians(lat1 - lat2);
+        final double diffLng = Math.toRadians(lng1 - lng2);
+        lat1 = Math.toRadians(lat1);
+        lat2 = Math.toRadians(lat2);
+
+        final double a = Math.pow(Math.sin(diffLat/2), 2) +
+                Math.pow(Math.sin(diffLng/2), 2) * Math.cos(lat1) * Math.cos(lat2);
+        final double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+
+        return EARTH_RADIUS * c;
     }
 
 }

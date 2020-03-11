@@ -133,7 +133,7 @@ public class User {
                 filter(Objects::nonNull).
                 filter(user -> user != this).
                 reduce((u1, u2) -> center.computeDistanceTo(u1.getAddress().getGeo()) <
-                        center.computeDistanceTo(u1.getAddress().getGeo()) ?
+                        center.computeDistanceTo(u2.getAddress().getGeo()) ?
                         u1 : u2);
     }
 
