@@ -1,8 +1,6 @@
 package com.balinski.internship.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.*;
 
 import javax.validation.constraints.NotNull;
 
@@ -46,15 +44,21 @@ public class Geo {
         this.lng = lng;
     }
 
-    //in kilometers, accuracy is within a few meters
-    public float getDistanceTo(@NotNull Geo other) {
+    /**
+     * Returns the distance in kilometers from this {@link Geo}'s geographical coordinates to the other.
+     * <p>
+     * Uses Haversine formula for computations. Accuracy of the result is within a few meters.
+     *
+     * @param  geo  {@link Geo} to measure distance to
+     * @return      the distance in kilometers to the specific {@link Geo}
+     */
+    public float getDistanceTo(@NotNull Geo geo) {
         final float EARTH_RADIUS_KM = 6372.8f;
 
-        //Haversine formula
         float lat1 = Float.parseFloat(this.lat);
-        float lat2 = Float.parseFloat(other.getLat());
+        float lat2 = Float.parseFloat(geo.getLat());
         final float lng1 = Float.parseFloat(this.lng);
-        final float lng2 = Float.parseFloat(other.getLng());
+        final float lng2 = Float.parseFloat(geo.getLng());
         final float diffLat = (float) Math.toRadians(lat1 - lat2);
         final float diffLng = (float) Math.toRadians(lng1 - lng2);
         lat1 = (float) Math.toRadians(lat1);

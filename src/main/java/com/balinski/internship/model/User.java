@@ -1,13 +1,9 @@
 package com.balinski.internship.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.*;
 
 import javax.validation.constraints.NotNull;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -119,6 +115,12 @@ public class User {
         this.company = company;
     }
 
+    /**
+     * Returns the number of posts assigned to this {@link User}
+     *
+     * @param  all  {@link List} of {@link Post}s to consider
+     * @return      number of posts assigned to this {@link User}
+     */
     public long getPostsCount(@NotNull List<Post> posts) {
         return posts.stream().
                 filter(Objects::nonNull).
@@ -126,6 +128,12 @@ public class User {
                 count();
     }
 
+    /**
+     * Returns the nearest (non-equal to this) neighbor of this {@link User} in terms of {@link Geo} distance.
+     *
+     * @param  all  {@link List} of {@link User}s to consider
+     * @return      {@link Optional} containing the nearest neighbor or empty if found none
+     */
     public Optional<User> getNearestNeighbor(@NotNull List<User> all) {
         final Geo center = this.address.getGeo();
 

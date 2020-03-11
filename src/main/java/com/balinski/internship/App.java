@@ -6,9 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class App {
@@ -27,8 +25,8 @@ public class App {
     }
 
     public static void printUsersWithPostsCount(List<User> users, List<Post> posts) {
-        System.out.println("\n------------------------------------------------------------\n");
-        System.out.println("Użytkownicy i ich liczba postów:");
+        System.out.println("------------------------------------------------------------");
+        System.out.println("Użytkownicy i ich liczba postów:\n");
 
         users.forEach(user ->
                 System.out.println(
@@ -42,8 +40,8 @@ public class App {
     }
 
     public static void printDuplicatedPostTitles(List<Post> posts) {
-        System.out.println("\n------------------------------------------------------------\n");
-        System.out.println("Zduplikowane tytuły postów:");
+        System.out.println("------------------------------------------------------------");
+        System.out.println("Zduplikowane tytuły postów:\n");
 
         Map<String, Long> titleToFreq = posts.stream().
                 map(Post::getTitle).
@@ -55,19 +53,19 @@ public class App {
     }
 
     public static void printNearestNeighbors(List<User> users) {
-        System.out.println("\n------------------------------------------------------------\n");
+        System.out.println("------------------------------------------------------------");
 
         if (users.size() > 1) {
-            System.out.println("Najbliżsi sąsiedzi użytkowników:");
+            System.out.println("Najbliżsi sąsiedzi użytkowników:\n");
 
             users.forEach(user ->
                     System.out.println(
                             String.format("Najbliżej %s znajduje się %s",
                                     user.getUsername(),
-                                    user.getNearestNeighbor(users).get().getUsername() //<-- no check for presence
-                            )                                                           //because there are at least
-                    )                                                                   //two users at this point - each
-            );                                                                          //having at least one neighbor
+                                    user.getNearestNeighbor(users).get().getUsername()
+                            )
+                    )
+            );
         } else {
             System.out.println("Wymagana jest obecność przynajmniej dwóch użytkowników, by móc określić sąsiedztwo.");
         }

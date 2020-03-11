@@ -1,21 +1,17 @@
 package com.balinski.internship;
 
-import com.balinski.internship.model.Address;
-import com.balinski.internship.model.Geo;
-import com.balinski.internship.model.Post;
-import com.balinski.internship.model.User;
+import com.balinski.internship.model.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.IntStream;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class UserTest {
+
     List<User> stubUsers;
     List<Post> stubPosts;
 

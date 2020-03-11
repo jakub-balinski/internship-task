@@ -7,6 +7,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class GeoTest {
+
     final Geo center = new Geo() {{
         setLat("0");
         setLng("0");
@@ -104,4 +105,5 @@ public class GeoTest {
 
         assertEquals(center.getDistanceTo(distant), center.getDistanceTo(closer), 0.001);
     }
+
 }
