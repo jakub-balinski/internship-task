@@ -106,4 +106,37 @@ public class GeoTest {
         assertEquals(center.getDistanceTo(distant), center.getDistanceTo(closer), 0.001);
     }
 
+    @Test
+    public void distanceBetweenAPointFarFarEastAndAPointFarFarWestIsShorterThanBetweenThemAndCenter() {
+        //checkmate, flat-earthers!
+        Geo farEast = new Geo() {{
+            setLat("0");
+            setLng("180");
+        }};
+        Geo farWest = new Geo() {{
+            setLat("0");
+            setLng("-180");
+        }};
+
+        assertTrue(farEast.getDistanceTo(farWest) < farEast.getDistanceTo(center));
+    }
+
+    @Test
+    public void differenceBetweenEquatorialAndMeridionalCircumferencesOfEarthIsAbout67Km() {
+        // The fact is caused by the Earth's flattening at the poles
+        Geo northPole = new Geo() {{
+            setLat("90");
+            setLng("0");
+        }};
+        Geo southPole = new Geo() {{
+            setLat("-90");
+            setLng("0");
+        }};
+        double equatorialCircumference = 40075.017;
+        double meridionalCircumference = 2*northPole.getDistanceTo(southPole);
+
+        assertEquals(67.154, equatorialCircumference - meridionalCircumference , 25.0f);
+        // Allow for +-25km absolute error because of use of doubles and imperfect lang.Math functions
+    }
+
 }
