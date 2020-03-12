@@ -48,6 +48,16 @@ public class UserTest {
     }
 
     @Test
+    public void postCountReturnsZeroForUserWithNoPosts() {
+        stubUsers.add(new User() {{
+                setId(100);
+            }}
+        );
+
+        assertEquals(stubUsers.get(5).getPostsCount(stubPosts), 0);
+    }
+
+    @Test
     public void postCountReturnsCorrectValues() {
         for (var user : stubUsers)
             assertEquals(user.getPostsCount(stubPosts), 2);
