@@ -1,10 +1,15 @@
 package com.balinski.internship;
 
-import com.balinski.internship.model.*;
+import com.balinski.internship.model.Address;
+import com.balinski.internship.model.Geo;
+import com.balinski.internship.model.Post;
+import com.balinski.internship.model.User;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.IntStream;
 
 import static org.junit.Assert.assertEquals;
@@ -50,8 +55,8 @@ public class UserTest {
     @Test
     public void postCountReturnsZeroForUserWithNoPosts() {
         stubUsers.add(new User() {{
-                setId(100);
-            }}
+                          setId(100);
+                      }}
         );
 
         assertEquals(stubUsers.get(5).getPostsCount(stubPosts), 0);

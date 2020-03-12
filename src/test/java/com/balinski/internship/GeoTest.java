@@ -133,9 +133,9 @@ public class GeoTest {
             setLng("0");
         }};
         double equatorialCircumference = 40075.017;
-        double meridionalCircumference = 2*northPole.getDistanceTo(southPole);
+        double meridionalCircumference = 2 * northPole.getDistanceTo(southPole);
 
-        assertEquals(67.154, equatorialCircumference - meridionalCircumference , 25.0f);
+        assertEquals(67.154, equatorialCircumference - meridionalCircumference, 25.0f);
         // Allow for +-25km absolute error because of use of doubles and imperfect lang.Math functions
     }
 

@@ -1,6 +1,8 @@
 package com.balinski.internship.model;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import javax.validation.constraints.NotNull;
 
@@ -49,8 +51,8 @@ public class Geo {
      * <p>
      * Uses Haversine formula for computations.
      *
-     * @param  geo  {@link Geo} to measure distance to
-     * @return      the distance in kilometers to the specific {@link Geo}
+     * @param geo {@link Geo} to measure distance to
+     * @return the distance in kilometers to the specific {@link Geo}
      */
     public double getDistanceTo(@NotNull Geo geo) {
         final double EARTH_RADIUS_KM = 6371.0088;
